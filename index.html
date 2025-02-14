@@ -2,22 +2,33 @@
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
-  <title>Bakgrundsbild som täcker</title>
+  <title>Nordhav i originalstorlek</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
+      background-color: #0C2440; /* Sätter bakgrundsfärgen */
     }
 
-    /* Ställ in bilden som bakgrund */
-    body {
-      background: url("nordhav.png") no-repeat center center fixed;
-      background-size: cover; /* Ser till att bilden täcker hela sidan */
+    /* Centrera innehållet både horisontellt och vertikalt */
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    /* Ingen storleksbegränsning på bilden – den visas i originalstorlek */
+    img {
+      /* Om du vill försäkra dig om att bilden inte överstiger fönstrets storlek 
+         kan du lägga till t.ex.: max-width: 100%; max-height: 100%; */
     }
   </style>
 </head>
 <body>
-  <!-- Lämna body tom om du bara vill se bakgrundsbilden -->
+  <div class="container">
+    <img src="nordhav.png" alt="Nordhav-logga i originalstorlek">
+  </div>
 </body>
 </html>
