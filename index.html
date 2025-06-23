@@ -32,7 +32,7 @@
     }
 
     .navbar {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
@@ -43,6 +43,30 @@
       justify-content: space-between;
       align-items: center;
       transition: all 0.3s ease;
+      backdrop-filter: blur(0px);
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px 15px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar.scrolled .logo img {
+      height: 40px;
+    }
+
+    .navbar.scrolled .nav-links a {
+      color: #1e2c4a;
+    }
+
+    .navbar.scrolled .nav-links a:hover {
+      color: #1e2c4a;
+    }
+
+    .navbar.scrolled .nav-links a:after {
+      background: #1e2c4a;
     }
 
     .logo {
@@ -57,8 +81,20 @@
       mix-blend-mode: screen;
     }
 
+    /* Fix for scrolled state - remove blend mode and adjust filters */
+    .navbar.scrolled .logo img {
+      mix-blend-mode: normal;
+      filter: none;
+    }
+
     .logo img:hover {
       filter: brightness(1.3) contrast(1.2);
+      transform: scale(1.05);
+    }
+
+    /* Ensure hover effects work correctly when scrolled */
+    .navbar.scrolled .logo img:hover {
+      filter: brightness(0.8) contrast(1.1);
       transform: scale(1.05);
     }
 
@@ -248,6 +284,72 @@
       opacity: 1;
     }
 
+    /* About section */
+    .about-section {
+      background: #1e2c4a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 40px;
+      position: relative;
+    }
+
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-content {
+      color: white;
+    }
+
+    .about-title {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 40px;
+      letter-spacing: -0.02em;
+    }
+
+    .about-title .highlight {
+      color: #7fb069;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      opacity: 0.9;
+      font-weight: 400;
+    }
+
+    .about-text:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .about-logo {
+      width: 300px;
+      height: auto;
+      filter: brightness(1.1) contrast(1.1);
+      transition: all 0.3s ease;
+      mix-blend-mode: screen;
+    }
+
+    .about-logo:hover {
+      filter: brightness(1.3) contrast(1.2);
+      transform: scale(1.02);
+    }
+
     /* Adjust scroll indicator to account for footer */
     .scroll-indicator {
       bottom: 80px;
@@ -257,6 +359,15 @@
     @media (max-width: 768px) {
       .navbar {
         padding: 30px 20px 15px;
+      }
+
+      .navbar.scrolled {
+        padding: 15px 20px 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar.scrolled .logo img {
+        height: 35px;
       }
 
       .nav-links {
@@ -291,6 +402,16 @@
       .scroll-indicator {
         bottom: 70px;
       }
+
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+      }
+
+      .about-logo {
+        width: 250px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -312,6 +433,10 @@
       .scroll-indicator {
         bottom: 85px;
       }
+
+      .about-logo {
+        width: 200px;
+      }
     }
   </style>
 </head>
@@ -330,7 +455,7 @@
 
     <div class="hero-content">
       <h1 class="hero-title">Nordhav slogan</h1>
-      <p class="hero-subtitle">Hjälper företag inom moln, data och AI</p>
+      <p class="hero-subtitle">Slogan 2</p>
       <a href="services.html" class="cta-button">Upptäck våra tjänster</a>
     </div>
 
@@ -341,12 +466,32 @@
     </div>
   </div>
 
+  <section class="about-section">
+    <div class="about-container">
+      <div class="about-content">
+        <h2 class="about-title">Vi <span class="highlight">skapar bestående förändring</span>, tillsammans.</h2>
+        <p class="about-text">
+          På Nordhav tror vi att moln, data och AI.....
+        </p>
+        <p class="about-text">
+          Mer.....
+        </p>
+        <p class="about-text">
+          Mer.....
+        </p>
+      </div>
+      <div class="about-visual">
+        <img src="nordhav.png" alt="Nordhav Logo" class="about-logo">
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="footer-logo">
       <img src="nordhav.png" alt="Nordhav Logo">
     </div>
     <div class="footer-contact">
-      <div class="footer-contact-title">Contact</div>
+      <div class="footer-contact-title">Kontakt</div>
       <a href="mailto:info@nordhav.se">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -367,6 +512,29 @@
           target.scrollIntoView({ behavior: 'smooth' });
         }
       });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      const logo = navbar.querySelector('.logo img');
+      
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+        // Create a new image to test if the blue logo exists
+        const testImg = new Image();
+        testImg.onload = function() {
+          logo.src = 'nordhavlinesblue.png';
+        };
+        testImg.onerror = function() {
+          // If blue logo doesn't exist, keep the original logo
+          console.warn('nordhavlinesblue.png not found, using original logo');
+        };
+        testImg.src = 'nordhavlinesblue.png';
+      } else {
+        navbar.classList.remove('scrolled');
+        logo.src = 'nordhav.png';
+      }
     });
   </script>
 </body>
